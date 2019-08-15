@@ -53,13 +53,13 @@
   <bpmndi:BPMNDiagram documentation="background=#3C3F41;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
     <bpmndi:BPMNPlane bpmnElement="second_approve">
       <bpmndi:BPMNShape bpmnElement="startEvent" id="Shape-startEvent">
-        <omgdc:Bounds height="32.0" width="32.0" x="75.0" y="240.0"/>
+        <omgdc:Bounds height="32.0" width="32.0" x="50.0" y="240.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="submitForm" id="Shape-submitForm">
-        <omgdc:Bounds height="55.0" width="85.0" x="215.0" y="230.0"/>
+        <omgdc:Bounds height="55.0" width="85.0" x="125.0" y="230.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
@@ -146,7 +146,7 @@
       <bpmndi:BPMNEdge bpmnElement="_19" id="BPMNEdge__19" sourceElement="decideHrApprove" targetElement="submitForm">
         <omgdi:waypoint x="961.0" y="240.0"/>
         <omgdi:waypoint x="530.0" y="145.0"/>
-        <omgdi:waypoint x="257.5" y="230.0"/>
+        <omgdi:waypoint x="167.5" y="230.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="0.0" width="6.0" x="0.0" y="-15.0"/>
         </bpmndi:BPMNLabel>
@@ -162,21 +162,21 @@
       <bpmndi:BPMNEdge bpmnElement="_20" id="BPMNEdge__20" sourceElement="decideTLApprove" targetElement="submitForm">
         <omgdi:waypoint x="591.0" y="272.0"/>
         <omgdi:waypoint x="400.0" y="515.0"/>
-        <omgdi:waypoint x="257.5" y="285.0"/>
+        <omgdi:waypoint x="167.5" y="285.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="0.0" width="-18.0" x="0.0" y="-15.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_11" id="BPMNEdge__11" sourceElement="submitForm" targetElement="decideSubmitForm">
-        <omgdi:waypoint x="300.0" y="257.5"/>
+        <omgdi:waypoint x="225.0" y="257.5"/>
         <omgdi:waypoint x="335.0" y="256.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+          <omgdc:Bounds height="0.0" width="-30.0" x="1.0" y="16.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_10" id="BPMNEdge__10" sourceElement="startEvent" targetElement="submitForm">
-        <omgdi:waypoint x="107.0" y="256.0"/>
-        <omgdi:waypoint x="215.0" y="257.5"/>
+        <omgdi:waypoint x="82.0" y="256.0"/>
+        <omgdi:waypoint x="125.0" y="257.5"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
