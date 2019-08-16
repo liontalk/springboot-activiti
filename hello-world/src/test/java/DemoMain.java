@@ -80,14 +80,11 @@ public class DemoMain {
                 }
                 //提交表单
                 taskService.complete(task.getId(), variable);
-
                 processInstance = processEngine.getRuntimeService().createProcessInstanceQuery()
                         .processInstanceId(processInstance.getId()).singleResult();
             }
             LOGGER.info("待处理任务数量 {} ", list.size());
         }
-
-
         LOGGER.info("结束程序");
     }
 
