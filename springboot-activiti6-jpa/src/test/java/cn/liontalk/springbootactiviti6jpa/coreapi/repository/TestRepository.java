@@ -10,13 +10,10 @@ import org.activiti.engine.task.IdentityLink;
 import org.activiti.engine.test.ActivitiRule;
 import org.junit.Rule;
 import org.junit.Test;
-import org.omg.PortableInterceptor.LOCATION_FORWARD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 public class TestRepository extends SpringbootActiviti6JpaApplicationTests {
