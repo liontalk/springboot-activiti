@@ -8,6 +8,4 @@
         from t_demo
         where id = #{id,jdbcType=INTEGER}
     </select>
-
-
 </mapper>
