@@ -39,7 +39,7 @@ public class TestRepository extends SpringbootActiviti6JpaApplicationTests {
         DeploymentBuilder deploymentBuilder1 = repositoryService.createDeployment();
         deploymentBuilder1.name("测试部署资源2")
                 .addClasspathResource("processes/zhouzhe.bpmn")
-                .addClasspathResource("processes/test.bpmn20.xml");
+                    .addClasspathResource("processes/test.bpmn20.xml");
         Deployment deploy1 = deploymentBuilder1.deploy();
         log.info("deploy=={}", deploy1);
 
