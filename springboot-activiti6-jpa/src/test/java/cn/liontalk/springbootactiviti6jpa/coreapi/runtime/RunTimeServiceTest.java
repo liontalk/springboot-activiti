@@ -49,4 +49,12 @@ public class RunTimeServiceTest extends SpringbootActiviti6JpaApplicationTests {
         log.info("processInstance == {}", processInstance);
     }
 
+
+    @Test
+    public void say(){
+
+    }
+
+
+
 }
