@@ -36,6 +36,8 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
         //打印我们的流程信息
         System.out.println("流程Id:" + deployment.getId());
         System.out.println("流程Name:" + deployment.getName());
+
+        //参看resources 目录下面的 image -- 部署任务之后影响数据库.png
     }
 
 
@@ -54,6 +56,8 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(processDefinitionkey);
         System.out.println("流程实例ID：" + processInstance.getId());//流程实例ID
         System.out.println("流程定义ID：" + processInstance.getProcessDefinitionId());//流程定义ID
+
+        //参看resources 目录下面的 image -- 流程开始01.png 和 流程开始02.png
     }
 
 
