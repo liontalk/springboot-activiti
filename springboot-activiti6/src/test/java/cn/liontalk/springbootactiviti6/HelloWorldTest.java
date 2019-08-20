@@ -1,6 +1,8 @@
 package cn.liontalk.springbootactiviti6;
 
-import org.activiti.engine.*;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.repository.ProcessDefinition;
@@ -8,13 +10,11 @@ import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.test.ActivitiRule;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.zip.ZipInputStream;
 
 public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
-
 
     private static Logger log = LoggerFactory.getLogger(HelloWorldTest.class);
 
@@ -398,8 +397,8 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
      * 我们的流程定义可能有多个版本，我们一般的删除是制定流程定义
      * 对象的id来进行删除的话，如果我们要彻底删除一个流程定义，那就
      * 要把该流程定义的所有版本全部删除。
-     *
-     *
+     * <p>
+     * <p>
      * eployment   部署对象
      * 1、一次部署的多个文件的信息。对于不需要的流程可以删除和修改。
      * 2、对应的表：
@@ -427,6 +426,4 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
             }
         }
     }
-
-
 }
