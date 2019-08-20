@@ -4,6 +4,7 @@ import org.activiti.engine.*;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.test.ActivitiRule;
@@ -15,7 +16,10 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.ZipInputStream;
 
 public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
@@ -326,6 +330,14 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
 
     /**
      * 查看附件流程图片
+     * <p>
+     * 说明：
+     * 1)deploymentId为流程部署ID
+     * 2)resourceName为act_ge_bytearray表中NAME_列的值
+     * 3)使用repositoryService的getDeploymentResourceNames方法可以获取指定部署下得所有文件的名称
+     * 4)使用repositoryService的getResourceAsStream方法传入部署ID和资源图片名称可以获取部署下指定名称文件的输入流
+     * 5)最后的有关IO流的操作，使用FileUtils工具的copyInputStreamToFile方法完成流程流程到文件的拷贝，
+     * 将资源文件以流的形式输出到指定文件夹下。
      */
     @Test
     public void viewImage() {
@@ -341,4 +353,80 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
         }
         System.out.println("imageName ==  >" + imageName);
     }
+
+
+    /**
+     * 查看最新版本的流程定义
+     */
+    @Test
+    public void queryAllLatestVersions() {
+        RepositoryService repositoryService = activitiRule.getRepositoryService();
+        ProcessDefinitionQuery query = repositoryService.createProcessDefinitionQuery();
+        //先做一个升序排列
+        List<ProcessDefinition> list = query.orderByProcessDefinitionVersion().asc() //使用版本升序排序
+                .list();//获取流程定义对象List集合
+
+        /**
+         * Map<String,ProcessDefinition>
+         * map集合的key：流程定义的key
+         * map集合的value：流程定义的对象
+         * map集合的特点：当map集合key值相同的情况下，后一次的值将替换前一次的值
+         * */
+        Map<String, ProcessDefinition> map = new LinkedHashMap<String, ProcessDefinition>();
+        if (list != null && list.size() > 0) {
+            for (ProcessDefinition pd : list) {
+                map.put(pd.getKey(), pd);
+            }
+        }
+
+        List<ProcessDefinition> pdList = new ArrayList<ProcessDefinition>(map.values());
+        //遍历集合，查看内容
+        for (ProcessDefinition pd : pdList) {
+            System.out.println("###########################################");
+            System.out.println("id:" + pd.getId());
+            System.out.println("name:" + pd.getName());
+            System.out.println("key:" + pd.getKey());
+            System.out.println("version:" + pd.getVersion());
+            System.out.println("resourceName:" + pd.getDiagramResourceName());
+            System.out.println("###########################################");
+        }
+    }
+
+
+    /**
+     * 删除key相同的所有不同版本的流程定义
+     * 我们的流程定义可能有多个版本，我们一般的删除是制定流程定义
+     * 对象的id来进行删除的话，如果我们要彻底删除一个流程定义，那就
+     * 要把该流程定义的所有版本全部删除。
+     *
+     *
+     * eployment   部署对象
+     * 1、一次部署的多个文件的信息。对于不需要的流程可以删除和修改。
+     * 2、对应的表：
+     *   act_re_deployment：部署对象表
+     *   act_re_procdef：流程定义表
+     *   act_ge_bytearray：资源文件表
+     *   act_ge_property：主键生成策略表
+     */
+    @Test
+    public void deleteProcessDefinitionByKey() {
+        //流程定义的key
+        String processDefinitionKey = "HelloWorld";
+        //先使用流程定义的key查询流程定义，查询出所有的版本
+        RepositoryService repositoryServic = activitiRule.getRepositoryService();
+        ProcessDefinitionQuery query = repositoryServic.createProcessDefinitionQuery();
+        List<ProcessDefinition> list = query.processDefinitionKey(processDefinitionKey).list();
+
+        //遍历，获取每个流程定义的部署ID
+        if (list != null && list.size() > 0) {
+            for (ProcessDefinition pd : list) {
+                //获取部署ID
+                String deploymentId = pd.getDeploymentId();
+                activitiRule.getRepositoryService()
+                        .deleteDeployment(deploymentId, true);//级联删除
+            }
+        }
+    }
+
+
 }
