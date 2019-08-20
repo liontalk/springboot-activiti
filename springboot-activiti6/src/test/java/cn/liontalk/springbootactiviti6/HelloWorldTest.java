@@ -61,6 +61,8 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
     }
 
 
+
+
     /**
      * 查询当前的个人任务(实际就是查询act_ru_task表)
      */
