@@ -2,14 +2,18 @@ package cn.liontalk.springbootactiviti6;
 
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 import org.activiti.engine.test.ActivitiRule;
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.util.List;
 
 
 public class RuntimeServiceTest extends SpringbootActiviti6ApplicationTests {
@@ -77,6 +81,73 @@ public class RuntimeServiceTest extends SpringbootActiviti6ApplicationTests {
          *
          * act_ru_execution表是正在执行的执行对象表。
          * 其中ID_是执行对象ID，PROC_INST_ID是流程实例ID。
+         *
+         * 看图 resources/image  中的 RunTimeService开始流程01.png
          */
     }
+
+
+    /**
+     * 查询当前的个人任务(实际就是查询act_ru_task表)
+     */
+    @Test
+    public void findMyPersonalTask() {
+        String assignee = "wangwu";
+        //获取事务Service
+        TaskService taskService = activitiRule.getTaskService();
+        List<Task> taskList = taskService.createTaskQuery()//创建任务查询对象
+                .taskAssignee(assignee)//指定个人任务查询，指定办理人
+                .list();//获取该办理人下的事务列表
+        if (taskList != null && taskList.size() > 0) {
+            for (Task task : taskList) {
+                System.out.println("#############################################");
+                System.out.println("任务ID：" + task.getId());
+                System.out.println("任务名称：" + task.getName());
+                System.out.println("任务的创建时间：" + task.getCreateTime());
+                System.out.println("任务办理人：" + task.getAssignee());
+                System.out.println("流程实例ID：" + task.getProcessInstanceId());
+                System.out.println("执行对象ID：" + task.getExecutionId());
+                System.out.println("流程定义ID：" + task.getProcessDefinitionId());
+                System.out.println("#############################################");
+            }
+        }else{
+            System.out.println("################## 没有需要完成的任务 #################");
+            System.out.println("################## 没有需要完成的任务 #################");
+        }
+
+        /**
+         *
+         *#############################################
+         * 任务ID：2505
+         * 任务名称：提交申请
+         * 任务的创建时间：Tue Aug 20 15:34:16 CST 2019
+         * 任务办理人：zhouzhe
+         * 流程实例ID：2501
+         * 执行对象ID：2502
+         * 流程定义ID：HelloWorld:1:4
+         * #############################################
+         * #############################################
+         * 任务ID：5005
+         * 任务名称：提交申请
+         * 任务的创建时间：Tue Aug 20 15:47:40 CST 2019
+         * 任务办理人：zhouzhe
+         * 流程实例ID：5001
+         * 执行对象ID：5002
+         * 流程定义ID：HelloWorld:1:4
+         * #############################################
+         */
+    }
+
+
+    /**
+     * 完成我的任务
+     */
+    @Test
+    public void completeMyPersonalTask() {
+        String taskId = "10002";//上一次我们查询的任务ID就是804
+        TaskService taskService = activitiRule.getTaskService();
+        taskService.complete(taskId);//完成taskId对应的任务
+        System.out.println("完成ID为" + taskId + "的任务");
+    }
+
 }
