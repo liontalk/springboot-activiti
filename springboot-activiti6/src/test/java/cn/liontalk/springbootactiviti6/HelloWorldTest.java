@@ -329,7 +329,6 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
 
     /**
      * 查看附件流程图片
-     * <p>
      * 说明：
      * 1)deploymentId为流程部署ID
      * 2)resourceName为act_ge_bytearray表中NAME_列的值
