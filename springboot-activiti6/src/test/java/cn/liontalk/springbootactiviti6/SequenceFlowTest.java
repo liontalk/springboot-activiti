@@ -116,14 +116,50 @@ public class SequenceFlowTest extends SpringbootActiviti6ApplicationTests {
 
 
     /**
-     * 完成任务
+     * 完成审核不重要的任务
      */
     @Test
-    public void testCompleteTask(){
-        String taskId = "5005";
-        Map<String,Object> variables=new HashMap<String,Object>();
-        variables.put("message","重要");
-        taskService.complete(taskId,variables);
+    public void testCompleteNoImportantTask() {
+        String taskId = "2505";
+        Map<String, Object> variables = new HashMap<String, Object>();
+        variables.put("message", "不重要");
+        taskService.complete(taskId, variables);
         System.out.println("任务完成了===》 " + taskId);
     }
+
+
+    /**
+     * 完成不重要的任务,需要开启新的分支
+     */
+    @Test
+    public void testCompleteImportTask() {
+        String taskId = "10005";
+        Map<String, Object> map = null;
+        try {
+            map = new HashMap<String, Object>();
+            map.put("message", "重要");
+            taskService.complete(taskId, map);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("完成了重要任务： " + taskId);
+    }
+
+
+
+    /**
+     * 完成最后的任务
+     */
+    @Test
+    public void testCompleteFinalTask() {
+        String taskId = "12503";
+        Map<String, Object> map = null;
+        try {
+            taskService.complete(taskId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("完成最后的任务： " + taskId);
+    }
+
 }
