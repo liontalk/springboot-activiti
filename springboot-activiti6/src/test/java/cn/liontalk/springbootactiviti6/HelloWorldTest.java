@@ -221,7 +221,7 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
     @Test
     public void completeMyPersonalTaskByWangWu() {
         TaskService taskService = activitiRule.getTaskService();
-        String taskId = "7502";//上一次我们查询的任务ID就是304
+        String taskId = "10002";//上一次我们查询的任务ID就是304
         taskService.complete(taskId);//完成taskId对应的任务
         System.out.println("完成ID为" + taskId + "的任务");
         //[结果] 完成ID为 [7502] 的任务
