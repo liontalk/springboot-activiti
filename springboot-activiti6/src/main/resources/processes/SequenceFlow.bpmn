@@ -3,7 +3,7 @@
   <process id="SequenceFlow" isClosed="false" isExecutable="true" name="SequenceFlow" processType="None">
     <startEvent id="start" name="StartEvent"/>
     <userTask activiti:assignee="zhaoliu" activiti:exclusive="true" id="userTask1" name="审批【部门经理】"/>
-    <userTask activiti:assignee="tianqi" activiti:exclusive="true" id="userTask2" name="审批【部门经理】"/>
+    <userTask activiti:assignee="tianqi" activiti:exclusive="true" id="userTask2" name="审批【总经理】"/>
     <endEvent id="endEvent" name="EndEvent"/>
     <sequenceFlow id="_6" sourceRef="start" targetRef="userTask1"/>
     <sequenceFlow id="_7" name="重要" sourceRef="userTask1" targetRef="userTask2">
@@ -40,28 +40,28 @@
           <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_6" id="BPMNEdge__6" sourceElement="_2" targetElement="_3">
+      <bpmndi:BPMNEdge bpmnElement="_6" id="BPMNEdge__6" sourceElement="start" targetElement="userTask1">
         <omgdi:waypoint x="197.0" y="366.0"/>
         <omgdi:waypoint x="300.0" y="372.5"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_7" id="BPMNEdge__7" sourceElement="_3" targetElement="_4">
-        <omgdi:waypoint x="385.0" y="372.5"/>
+      <bpmndi:BPMNEdge bpmnElement="_7" id="BPMNEdge__7" sourceElement="userTask1" targetElement="userTask2">
+        <omgdi:waypoint x="400.0" y="372.5"/>
         <omgdi:waypoint x="535.0" y="287.5"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_8" id="BPMNEdge__8" sourceElement="_3" targetElement="_5">
+      <bpmndi:BPMNEdge bpmnElement="_8" id="BPMNEdge__8" sourceElement="userTask1" targetElement="endEvent">
         <omgdi:waypoint x="385.0" y="372.5"/>
         <omgdi:waypoint x="805.0" y="366.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="-19.0" width="0.0" x="0.0" y="5.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_9" id="BPMNEdge__9" sourceElement="_4" targetElement="_5">
+      <bpmndi:BPMNEdge bpmnElement="_9" id="BPMNEdge__9" sourceElement="userTask2" targetElement="endEvent">
         <omgdi:waypoint x="620.0" y="287.5"/>
         <omgdi:waypoint x="805.0" y="366.0"/>
         <bpmndi:BPMNLabel>
