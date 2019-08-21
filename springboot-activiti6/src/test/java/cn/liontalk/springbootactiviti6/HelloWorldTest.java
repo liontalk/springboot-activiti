@@ -31,6 +31,23 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
 
     /**
      * 部署流程定义
+     *
+     *
+     *  a)act_re_deployment（部署对象表）
+     *         存放流程定义的显示名和部署时间，每部署一次增加一条记录
+     *     注：如果部署相同Key的流程，那么Version将会升级，也就是版本升级:
+     *     启动该Key的流程时，默认启动最新版本(Version)的流程。
+     *
+     *
+     *     b)act_re_procdef（流程定义表）
+     *         存放流程定义的属性信息，部署每个新的流程定义都会在这张表中增加一条记录。
+     *     注意：当流程定义的key相同的情况下，使用的是版本升级。
+     *
+     *
+     *     c)act_ge_bytearray（资源文件表）
+     *         存储流程定义相关的部署信息。即流程定义文档的存放地。每部署一次就会增加两条记录，    
+     *     一条是关于bpmn规则文件的，一条是图片的（如果部署时只指定了bpmn一个文件，activiti    
+     *     会在部署时解析bpmn文件内容自动生成流程图）。两个文件不是很大，都是以二进制形式存储在数据库中。
      */
     @Test
     public void deploymentProcessDefinition() {
@@ -44,7 +61,6 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
         //打印我们的流程信息
         System.out.println("流程Id:" + deployment.getId());
         System.out.println("流程Name:" + deployment.getName());
-
         //参看resources 目录下面的 image -- 部署任务之后影响数据库.png
     }
 
@@ -64,7 +80,7 @@ public class HelloWorldTest extends SpringbootActiviti6ApplicationTests {
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(processDefinitionkey);
         System.out.println("流程实例ID：" + processInstance.getId());//流程实例ID
         System.out.println("流程定义ID：" + processInstance.getProcessDefinitionId());//流程定义ID
-
+        System.out.println("流程激活ID: " + processInstance.getActivityId());
         //参看resources 目录下面的 image -- 流程开始01.png 和 流程开始02.png
     }
 
