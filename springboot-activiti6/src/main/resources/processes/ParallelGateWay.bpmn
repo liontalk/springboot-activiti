@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/test" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1566444458148" name="" targetNamespace="http://www.activiti.org/test" typeLanguage="http://www.w3.org/2001/XMLSchema">
+  <process id="ParallelGateWay" isClosed="false" isExecutable="true" name="并行网关" processType="None">
+    <startEvent id="start" name="StartEvent"/>
+    <parallelGateway gatewayDirection="Unspecified" id="ParallelGateway1" name="ParallelGateway"/>
+    <userTask activiti:assignee="buyer" activiti:exclusive="true" id="payMoney" name="付款"/>
+    <userTask activiti:assignee="seller" activiti:exclusive="true" id="sendGoods" name="发货"/>
+    <userTask activiti:assignee="seller" activiti:exclusive="true" id="receiveMoney" name="收款"/>
+    <userTask activiti:assignee="buyer" activiti:exclusive="true" id="receiveGoods" name="收货"/>
+    <parallelGateway gatewayDirection="Unspecified" id="ParallelGateway2" name="ParallelGateway"/>
+    <endEvent id="endEvent" name="EndEvent"/>
+    <sequenceFlow id="_10" sourceRef="start" targetRef="ParallelGateway1"/>
+    <sequenceFlow id="_11" sourceRef="ParallelGateway1" targetRef="payMoney"/>
+    <sequenceFlow id="_12" sourceRef="ParallelGateway1" targetRef="sendGoods"/>
+    <sequenceFlow id="_13" sourceRef="payMoney" targetRef="receiveMoney"/>
+    <sequenceFlow id="_14" sourceRef="sendGoods" targetRef="receiveGoods"/>
+    <sequenceFlow id="_15" sourceRef="receiveMoney" targetRef="ParallelGateway2"/>
+    <sequenceFlow id="_16" sourceRef="receiveGoods" targetRef="ParallelGateway2"/>
+    <sequenceFlow id="_17" sourceRef="ParallelGateway2" targetRef="endEvent"/>
+  </process>
+  <bpmndi:BPMNDiagram documentation="background=#3C3F41;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
+    <bpmndi:BPMNPlane bpmnElement="ParallelGateWay">
+      <bpmndi:BPMNShape bpmnElement="start" id="Shape-start">
+        <omgdc:Bounds height="32.0" width="32.0" x="565.0" y="50.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ParallelGateway1" id="Shape-ParallelGateway1">
+        <omgdc:Bounds height="32.0" width="32.0" x="565.0" y="155.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="payMoney" id="Shape-payMoney">
+        <omgdc:Bounds height="55.0" width="85.0" x="410.0" y="285.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sendGoods" id="Shape-sendGoods">
+        <omgdc:Bounds height="55.0" width="85.0" x="670.0" y="280.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="receiveMoney" id="Shape-receiveMoney">
+        <omgdc:Bounds height="55.0" width="85.0" x="405.0" y="455.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="receiveGoods" id="Shape-receiveGoods">
+        <omgdc:Bounds height="55.0" width="85.0" x="675.0" y="455.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ParallelGateway2" id="Shape-ParallelGateway2">
+        <omgdc:Bounds height="32.0" width="32.0" x="555.0" y="585.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endEvent" id="Shape-endEvent">
+        <omgdc:Bounds height="32.0" width="32.0" x="555.0" y="710.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_13" id="BPMNEdge__13" sourceElement="payMoney" targetElement="reiveMoney">
+        <omgdi:waypoint x="450.0" y="340.0"/>
+        <omgdi:waypoint x="450.0" y="455.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12" id="BPMNEdge__12" sourceElement="ParallelGateway1" targetElement="sendGoods">
+        <omgdi:waypoint x="597.0" y="171.0"/>
+        <omgdi:waypoint x="705.0" y="225.0"/>
+        <omgdi:waypoint x="705.0" y="280.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15" id="BPMNEdge__15" sourceElement="reiveMoney" targetElement="ParallelGateway2">
+        <omgdi:waypoint x="450.0" y="510.0"/>
+        <omgdi:waypoint x="450.0" y="545.0"/>
+        <omgdi:waypoint x="555.0" y="601.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_14" id="BPMNEdge__14" sourceElement="sendGoods" targetElement="receiveGoods">
+        <omgdi:waypoint x="715.0" y="335.0"/>
+        <omgdi:waypoint x="715.0" y="455.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17" id="BPMNEdge__17" sourceElement="ParallelGateway2" targetElement="endEvent">
+        <omgdi:waypoint x="571.0" y="617.0"/>
+        <omgdi:waypoint x="571.0" y="710.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16" id="BPMNEdge__16" sourceElement="receiveGoods" targetElement="ParallelGateway2">
+        <omgdi:waypoint x="715.0" y="510.0"/>
+        <omgdi:waypoint x="715.0" y="560.0"/>
+        <omgdi:waypoint x="587.0" y="601.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11" id="BPMNEdge__11" sourceElement="ParallelGateway1" targetElement="payMoney">
+        <omgdi:waypoint x="565.0" y="171.0"/>
+        <omgdi:waypoint x="450.0" y="250.0"/>
+        <omgdi:waypoint x="450.0" y="285.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10" id="BPMNEdge__10" sourceElement="start" targetElement="ParallelGateway1">
+        <omgdi:waypoint x="581.0" y="82.0"/>
+        <omgdi:waypoint x="581.0" y="155.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
