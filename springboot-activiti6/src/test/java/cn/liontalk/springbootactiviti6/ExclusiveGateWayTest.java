@@ -123,11 +123,11 @@ public class ExclusiveGateWayTest extends SpringbootActiviti6ApplicationTests {
     @Test
     public void completeMyPersonalTask() {
         //上一次完成工作我们查询的任务ID
-        String taskId = "20005";
+        String taskId = "30005";
         //完成任务的同时，设置流程变量，使用流程变量用来制定完成任务后，下一个连线，
         //对应exclusiveGateWayFlow.bpmn文件中${message==450}
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("message", 450);
+        map.put("message", 700);
         taskService.complete(taskId, map);
         System.out.println("完成任务ID为：" + taskId + "的任务！");
     }
@@ -167,8 +167,53 @@ public class ExclusiveGateWayTest extends SpringbootActiviti6ApplicationTests {
 
 
     @Test
+    public void findMyPersonalTaskByBuMenJinLi() {
+        String assign = "zhangtingting";
+        List<Task> list = taskService.createTaskQuery()
+                .taskAssignee(assign)
+                .list();
+        if (!CollectionUtil.isEmpty(list)) {
+            for (Task task : list) {
+                System.out.println("#############################################");
+                System.out.println("任务ID：" + task.getId());
+                System.out.println("任务名称：" + task.getName());
+                System.out.println("任务的创建时间：" + task.getCreateTime());
+                System.out.println("任务办理人：" + task.getAssignee());
+                System.out.println("流程实例ID：" + task.getProcessInstanceId());
+                System.out.println("执行对象ID：" + task.getExecutionId());
+                System.out.println("流程定义ID：" + task.getProcessDefinitionId());
+                System.out.println("#############################################");
+            }
+        }
+    }
+
+
+
+    @Test
+    public void findMyPersonalTaskByZongJinLi() {
+        String assign = "liuyuehua";
+        List<Task> list = taskService.createTaskQuery()
+                .taskAssignee(assign)
+                .list();
+        if (!CollectionUtil.isEmpty(list)) {
+            for (Task task : list) {
+                System.out.println("#############################################");
+                System.out.println("任务ID：" + task.getId());
+                System.out.println("任务名称：" + task.getName());
+                System.out.println("任务的创建时间：" + task.getCreateTime());
+                System.out.println("任务办理人：" + task.getAssignee());
+                System.out.println("流程实例ID：" + task.getProcessInstanceId());
+                System.out.println("执行对象ID：" + task.getExecutionId());
+                System.out.println("流程定义ID：" + task.getProcessDefinitionId());
+                System.out.println("#############################################");
+            }
+        }
+    }
+
+
+    @Test
     public void completeTaskByCaiWu() {
-        String taskId = "22504";
+        String taskId = "32504";
         taskService.complete(taskId);
         System.out.println("完成了任务：" + taskId + "的任务");
     }
