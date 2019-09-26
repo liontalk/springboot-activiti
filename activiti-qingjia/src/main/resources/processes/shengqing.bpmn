@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/testm1569482818872" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1569482818872" name="" targetNamespace="http://www.activiti.org/testm1569482818872" typeLanguage="http://www.w3.org/2001/XMLSchema">
+  <process id="shengqing" isClosed="false" isExecutable="true" name="shengqing" processType="None">
+    <startEvent id="start" name="开始"/>
+    <userTask activiti:exclusive="true" id="qjsq" name="请假申请"/>
+    <userTask activiti:assignee="小毛" activiti:exclusive="true" id="bzr" name="班主任"/>
+    <userTask activiti:assignee="大毛" activiti:exclusive="true" id="jwc" name="教务处"/>
+    <endEvent id="end" name="结束"/>
+    <sequenceFlow id="_7" sourceRef="start" targetRef="qjsq"/>
+    <sequenceFlow id="_8" sourceRef="qjsq" targetRef="bzr"/>
+    <sequenceFlow id="_9" sourceRef="bzr" targetRef="jwc"/>
+    <sequenceFlow id="_10" sourceRef="jwc" targetRef="end"/>
+  </process>
+  <bpmndi:BPMNDiagram documentation="background=#3C3F41;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
+    <bpmndi:BPMNPlane bpmnElement="shengqing">
+      <bpmndi:BPMNShape bpmnElement="start" id="Shape-start">
+        <dc:Bounds height="32.0" width="32.0" x="180.0" y="375.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="qjsq" id="Shape-qjsq">
+        <dc:Bounds height="55.0" width="85.0" x="350.0" y="370.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="bzr" id="Shape-bzr">
+        <dc:Bounds height="55.0" width="85.0" x="550.0" y="365.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="jwc" id="Shape-jwc">
+        <dc:Bounds height="55.0" width="85.0" x="755.0" y="370.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="Shape-end">
+        <dc:Bounds height="32.0" width="32.0" x="960.0" y="375.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_7" id="BPMNEdge__7" sourceElement="start" targetElement="qjsq">
+        <di:waypoint x="212.0" y="391.0"/>
+        <di:waypoint x="350.0" y="397.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8" id="BPMNEdge__8" sourceElement="qjsq" targetElement="bzr">
+        <di:waypoint x="435.0" y="397.5"/>
+        <di:waypoint x="550.0" y="392.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9" id="BPMNEdge__9" sourceElement="bzr" targetElement="jwc">
+        <di:waypoint x="635.0" y="392.5"/>
+        <di:waypoint x="755.0" y="397.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10" id="BPMNEdge__10" sourceElement="jwc" targetElement="end">
+        <di:waypoint x="840.0" y="397.5"/>
+        <di:waypoint x="960.0" y="391.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
